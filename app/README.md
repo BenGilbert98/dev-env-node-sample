@@ -8,6 +8,31 @@ To use the repo within your course you should fork it.
 
 The app is a node app with three pages.
 
+## Solution
+1) In order to get the app homepage to load, we must pass the tests that require Ubuntu packages to be installed.
+2) `rake spec` is used to perform the tests.
+3) Once tests are complete the packages which need to be installed are identified
+4) In order to pass the tests the following packages must be installed when `vagrant up` is entered.
+This is done by adding the following to the provision.sh file.
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install nginx -y
+sudo apt-get install nodejs -y
+sudo apt-get install npm -y
+sudo npm install -g pm2
+```
+5) `vagrant up` is used to create a virtual machine instance with the packages inside the provision.sh file.
+6) The tests are rerun and they should all pass.
+7) Enter the virtual machine with vagrant ssh
+8) Once inside the virtual machine run the following commands
+```
+npm install
+npm start
+```
+9) Once ran go to your browser and type the address within your `config.vm.network` inside your Vagrantfile with :3000 at the end.
+10) You should now have the page visible.
+
 ### Homepage
 
 ``localhost:3000``
